@@ -1,0 +1,7 @@
+#Pycharm Files
+**/.idea/**/*
+*.pyc
+
+#Packaging Files
+*.egg-info
+
