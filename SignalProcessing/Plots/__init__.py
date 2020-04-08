@@ -4,3 +4,4 @@
 #  Authors: Oliver Bruendler
 ##############################################################################
 from . import Filters
+from . import Spectrum
