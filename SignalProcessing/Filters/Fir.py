@@ -80,9 +80,6 @@ def CicComp(fc : float, fstop : float, fs_cicout : float,
             fFir.append(fstop)
             hFir.append(gainStop)
             addedFstop = True
-    #Filter must have a zero at fs/2
-    fFir.append(fs_cicout/2)
-    hFir.append(0)
     fFirNorm = np.array(fFir) / (fs_cicout/2)
     firCoefs = sps.firwin2(fir_order+1, fFirNorm, hFir, window=window)
     #Correct DC gain has priority

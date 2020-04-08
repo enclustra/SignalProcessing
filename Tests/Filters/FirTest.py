@@ -5,7 +5,7 @@
 ##############################################################################
 
 import sys
-sys.path.append("../../src")
+sys.path.append("../..")
 
 from SignalProcessing.Filters.Fir import *
 from SignalProcessing.Filters.Cic import FreqResp as CicResp
