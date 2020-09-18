@@ -52,7 +52,7 @@ def CicComp(fc : float, fstop : float, fs_cicout : float,
     """
     #Derived parameters
     fsFirOut = fs_cicout/fir_ratio
-    fsCicIn = fs_cicout #We assume a CIC ratio=1 since the CIC ratio does not have any impact on the results
+    fsCicIn = fs_cicout*2 #We assume a CIC ratio=2 since the CIC ratio does not have any impact on the results
     if window is None:
         window = "flattop"
     POINTS = 16384
@@ -64,7 +64,7 @@ def CicComp(fc : float, fstop : float, fs_cicout : float,
 
     #Calculate Parameters
     fCicCorr = np.linspace(0, fs_cicout/2, POINTS)
-    cicResp = CicFreqResp(fCicCorr, fsCicIn, 1, cic_order, normalize=True, diffDelay=cic_diffDel)
+    cicResp = CicFreqResp(fCicCorr, fsCicIn, 2, cic_order, normalize=True, diffDelay=cic_diffDel)
     hCicCorr = 1/cicResp
     fFir = []
     hFir = []
