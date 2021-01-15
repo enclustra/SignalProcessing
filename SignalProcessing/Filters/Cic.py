@@ -36,8 +36,8 @@ def FreqResp(f : np.ndarray, fs : float, ratio : int, order : int, normalize : b
     :return: Gain at frequencies f
     """
     g = Gain(ratio, order, diff_delay=diffDelay)
-    f = f/fs*ratio
-    respUncomp =  abs((np.sin(f * diffDelay * 1.0 * np.pi)+1e-16) / (np.sin(f * np.pi / ratio)+1e-16)) ** order
+    f = f/fs
+    respUncomp =  abs((np.sin(f * diffDelay * ratio * 1.0 * np.pi)+1e-16) / (np.sin(f * np.pi)+1e-16)) ** order
     respUncomp[f==0] = g
     if normalize:
         return respUncomp / g
