@@ -31,7 +31,7 @@ def GainAtFreq(coefs, f, fs):
     return res
 
 def CicComp(fc : float, fstop : float, fs_cicout : float,
-            cic_order : int,
+            cic_order : int, cic_ratio : int,
             fir_order : int, fir_ratio : int,
             cic_diffDel: int = 1, window: str = None, suppressionDb: float = 80.0, minPhase: bool = False) -> np.ndarray:
     """
@@ -42,6 +42,7 @@ def CicComp(fc : float, fstop : float, fs_cicout : float,
     :param fstop: Start frequency of the stop-band in Hz
     :param fs_cicout: Sampling frequency at the CIC output in Hz
     :param cic_order: Order of the CIC filter
+    :param cic_ratio: CIC filter decimation ratio
     :param fir_order: Order of the FIR filter
     :param fir_ratio: Decimation ratio of the FIR filter
     :param cic_diffDel: Differential delay of CIC filter (optional, default = 1)
@@ -52,7 +53,7 @@ def CicComp(fc : float, fstop : float, fs_cicout : float,
     """
     #Derived parameters
     fsFirOut = fs_cicout/fir_ratio
-    fsCicIn = fs_cicout*2 #We assume a CIC ratio=2 since the CIC ratio does not have any impact on the results
+    fsCicIn = fs_cicout*cic_ratio
     if window is None:
         window = "flattop"
     POINTS = 16384
@@ -64,7 +65,7 @@ def CicComp(fc : float, fstop : float, fs_cicout : float,
 
     #Calculate Parameters
     fCicCorr = np.linspace(0, fs_cicout/2, POINTS)
-    cicResp = CicFreqResp(fCicCorr, fsCicIn, 2, cic_order, normalize=True, diffDelay=cic_diffDel)
+    cicResp = CicFreqResp(fCicCorr, fsCicIn, cic_ratio, cic_order, normalize=True, diffDelay=cic_diffDel)
     hCicCorr = 1/cicResp
     fFir = []
     hFir = []
