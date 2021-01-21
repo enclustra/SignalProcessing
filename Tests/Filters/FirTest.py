@@ -31,7 +31,7 @@ def TestCicComp():
     ax[0].set_title("CIC Gain")
     ax[0].set_ylabel("Gain [dB]")
 
-    coef = CicComp(1.5e3, 2e3, FS/CIC_R, CIC_O, FIR_O, FIR_R, cic_diffDel=2, minPhase=True)
+    coef = CicComp(1.5e3, 2e3, FS/CIC_R, CIC_O, CIC_R, FIR_O, FIR_R, cic_diffDel=2, minPhase=True)
     g = GainAtFreq(coef, f, FS/CIC_R)
     respFir = np.abs(g)
     ax[1].plot(f, Lin2dB(respFir))
