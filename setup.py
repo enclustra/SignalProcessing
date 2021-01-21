@@ -12,11 +12,11 @@ class CustomSdist(sdist):
 #Package
 setuptools.setup(
     name="SignalProcessing",
-    version="1.0.0",
-    author="Oliver Bründler",
-    author_email="oliver.bruendler@psi.ch",
+    version="1.1.0",
+    author="Radoslaw Rybaniec",
+    author_email="radoslaw.rybaniec@psi.ch",
     description="Signal processing development helpers",
-    url="https://git.psi.ch/GFA/Libraries/Firmware/Python/SignalProcessing",
+    url="https://github.com/paulscherrerinstitute/SignalProcessing",
     packages=setuptools.find_packages(),
     install_requires = [
         "scipy",
